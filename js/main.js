@@ -24,7 +24,9 @@ const prepareDOMEvents = () => {
 	ulList.addEventListener("click", checkClick);
 	popupCloseBtn.addEventListener("click", closePopup);
 	popupAddBtn.addEventListener("click", changeTodoText);
-	todoInput.addEventListener("keyup", enterKey);
+	todoInput.addEventListener("keyup", enterKeyAdd);
+	popupInput.addEventListener("keyup", enterKeyEdit);
+	document.addEventListener("keyup", enterKeyClose);
 };
 const addNewTask = () => {
 	if (todoInput.value !== "") {
@@ -101,9 +103,20 @@ const deleteTask = (e) => {
 	}
 };
 
-const enterKey = (e) => {
+const enterKeyAdd = (e) => {
 	if (e.key === "Enter") {
 		addNewTask();
+	}
+};
+const enterKeyEdit = (e) => {
+	if (e.key === "Enter") {
+		changeTodoText();
+	}
+};
+
+const enterKeyClose = (e) => {
+	if (e.key === "Escape") {
+		closePopup();
 	}
 };
 
